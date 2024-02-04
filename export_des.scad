@@ -49,8 +49,14 @@ module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_r
             des_keycap(row=row, width=width, dot=dot, deepdish=deepdish, ring=ring);
         }
 
+        vectorTranslate = [width * spacing / 2 - 3, 5, - 0.8 * spru_radius];
         for (i = [0 : n - 1 - 1]){
-            translate([width * spacing / 2 - 3, 5, - 0.8 * spru_radius])
+            vectorTranslate = [
+                vectorTranslate[0] + (spacing*i),
+                vectorTranslate[1],
+                vectorTranslate[2]
+            ];
+            translate(vectorTranslate)
             rotate([0, 90, 0])
             cylinder(h = 6, r = spru_radius, $fn=20);
         }
